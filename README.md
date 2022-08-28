@@ -15,6 +15,8 @@
 
 ```sh
 docker build -t local/r8 . 
-docker run -it local/r8
+docker run -itd --privileged --name ansible-sandbox local/r8
+docker exec -it ansible-sandbox /bin/bash
 ```
 
+Bashプロンプトが表示されたら、まず、ssh localhostしてknown_hostsにlocalhostを登録しよう。(後続のAnsibleの操作をスムーズにするため。)

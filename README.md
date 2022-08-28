@@ -20,3 +20,12 @@ docker exec -it ansible-sandbox /bin/bash
 ```
 
 Bashプロンプトが表示されたら、まず、ssh localhostしてknown_hostsにlocalhostを登録しよう。(後続のAnsibleの操作をスムーズにするため。)
+
+(exitして戻ってくること。)
+
+続いて、ansible-playbookを実行する。
+
+```sh
+cd /
+ansible-playbook -i localhost /root/main.yml
+```

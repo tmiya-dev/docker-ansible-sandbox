@@ -12,4 +12,5 @@ COPY ./rpms/postgresql14-14.5-1PGDG.rhel8.x86_64.rpm /var/tmp/
 COPY ./rpms/postgresql14-libs-14.5-1PGDG.rhel8.x86_64.rpm /var/tmp/
 COPY ./rpms/postgresql14-server-14.5-1PGDG.rhel8.x86_64.rpm /var/tmp/
 # RUN rpm -ivh /var/tmp/*.rpm # we do it from Ansible!
+COPY ./playbook/main.yml /root/main.yml
 CMD ["/sbin/init"]

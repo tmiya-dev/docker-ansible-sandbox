@@ -1,0 +1,16 @@
+- hosts: localhost
+  remote_user: root
+  tasks:
+  - name: stop PostgreSQL (if running)
+    command: su postgres -c "/usr/pgsql-14/bin/pg_ctl -D /var/lib/pgsql/14/data stop"
+    ignore_errors: yes
+  - name: delete database directory
+    file:
+      path: /var/lib/pgsql/14/data
+      state: absent
+  - name: install rpms
+    command: rpm -ivh --force /var/tmp/*.rpm
+  - name: initdb PostgreSQL
+    command: su postgres -c "/usr/pgsql-14/bin/initdb -D /var/lib/pgsql/14/data -E UTF8 --no-locale -U postgres"
+  - name: start PostgreSQL
+    command: su postgres -c "/usr/pgsql-14/bin/pg_ctl -D /var/lib/pgsql/14/data -l /var/lib/pgsql/postgres.log start"
